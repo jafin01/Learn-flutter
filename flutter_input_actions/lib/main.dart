@@ -1,19 +1,25 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyHomePage());
+  runApp(const MyHomePage());
 }
 
-class MyHomePage extends StatelessWidget {
-  MyHomePage({super.key});
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
 
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
   final _textController = TextEditingController();
-  late String name;
+
+  String _name = "Entered text here";
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter Actions',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -29,10 +35,10 @@ class MyHomePage extends StatelessWidget {
           child: SafeArea(
             child: Column(
               children: [
-                const Expanded(
+                Expanded(
                     child: Column(
                   children: [
-                    Text(
+                    const Text(
                       "Here is the Entered Text: ",
                       style: TextStyle(
                           fontWeight: FontWeight.w600,
@@ -40,8 +46,9 @@ class MyHomePage extends StatelessWidget {
                           fontFamily: "Poppins"),
                     ),
                     Text(
-                      "Entered text here",
-                      style: TextStyle(fontSize: 26, fontFamily: "Poppins"),
+                      _name,
+                      style:
+                          const TextStyle(fontSize: 26, fontFamily: "Poppins"),
                     )
                   ],
                 )),
@@ -76,7 +83,9 @@ class MyHomePage extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          name = _textController.text;
+                          setState(() {
+                            _name = _textController.text;
+                          });
                         },
                         child: const Text('Submit'),
                       ),
