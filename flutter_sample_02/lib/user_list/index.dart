@@ -33,6 +33,9 @@ class UserList extends StatelessWidget {
               ),
               // ignore: avoid_print
             ),
+            onTap: () => Navigator.of(context).pushNamed('/user', arguments: {
+              "title": "Person ${index + 1}",
+            }),
           );
         },
         separatorBuilder: (ctx, index) {
